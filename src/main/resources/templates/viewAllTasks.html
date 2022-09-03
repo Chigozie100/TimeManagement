@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar">
+    <a class="navbar-brand" th:href="@{/login}" style="color: rgba(217,5,54,0.84)">Jane's Time Management</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <table class="table table-striped table-dark mt-4">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">CreatedDated</th>
+            <th scope="col">CreatedTime</th>
+            <th scope="col">UpdatedDated</th>
+            <th scope="col">UpdatedTime</th>
+            <th scope="col">CompletedDated</th>
+            <th scope="col">CompletedTime</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="tasks : ${taskList}">
+            <tr>
+                <!--        <th scope="row">1</th>-->
+                <td>[[${tasks.id}]]</td>
+                <td>[[${tasks.title}]]</td>
+                <td>[[${tasks.description}]]</td>
+                <td>[[${tasks.status}]]</td>
+                <td>[[${tasks.createdDate}]]</td>
+                <td>[[${tasks.createdTime}]]</td>
+                <td>[[${tasks.updatedDate}]]</td>
+                <td>[[${tasks.updatedTime}]]</td>
+                <td>[[${tasks.completedDate}]]</td>
+                <td>[[${tasks.completedTime}]]</td>
+                <td>
+                    <a type="button" style="color: red" th:href="@{/editTask/{id}(id=${tasks.id})}">Edit</a>
+
+
+                    <a type="button" style="color: red" th:href="@{/deleteTask/{id}(id=${tasks.id})}">Delete</a>
+
+                    <a type="button" style="color: seagreen" th:href="@{/doneTask/{id}(id=${tasks.id})}">Done</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+</body>
+</html>
